@@ -18,7 +18,28 @@ void generateCodes(Node* root, int code[], int top) {
     }
 }
 
+Node* buildHuffmanTree(char characters[], int freq[], int n) {
+    MinHeapNode* heap = createMinHeap(n);
+    for (int i = 0; i < n; i++) 
+        insertMinHeap(heap, createNode(characters[i], freq[i]));
+    while (heap->size > 1) {
+        Node* left = extractMin(heap);
+        Node* right = extractMin(heap);
+        Node* parent = createNode('\0', left->frequency + right->frequency);
+        parent->left = left;
+        parent->right = right;
+        insertMinHeap(heap, parent);
+    }
+    return extractMin(heap);
+}
 
-
-
+void printTree(Node* root) {
+    if (root == NULL) return;
+    if (root->character != '\0')
+        printf("Leaf: %c, Freq: %d\n", root->character, root->frequency);
+    else
+        printf("Internal Node, Freq: %d\n", root->frequency);
+    printTree(root->left);
+    printTree(root->right);
+}
 
