@@ -55,7 +55,7 @@ void printTree(Node *root)
 int main()
 {
     char arr[] = {'a', 'b', 'c', 'd', 'e', 'f'};
-    int freq[] = {5, 9, 12, 13, 16, 45};
+    int freq[] = {5, 56, 14, 32, 6, 5};
     int size = sizeof(arr) / sizeof(arr[0]);
 
     Node *root = buildHuffmanTree(arr, freq, size);
@@ -65,6 +65,7 @@ int main()
 
     printf("Huffman Codes:\n");
     generateCodes(root, arr_codes, top);
+    printTree(root);
 
     return 0;
 }

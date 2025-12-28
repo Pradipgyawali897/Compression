@@ -23,7 +23,6 @@ void insert_minheap_node(MinHeapNode *minHeap, Node *minHeapNode)
     minHeap->size++;
     int i = minHeap->size - 1;
 
-    // bubble up
     while (i && minHeapNode->frequency < minHeap->array[(i - 1) / 2]->frequency)
     {
         minHeap->array[i] = minHeap->array[(i - 1) / 2];
