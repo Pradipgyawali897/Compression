@@ -18,6 +18,20 @@ MinHeapNode *create_minheap_node(int capacity)
     return temp;
 }
 
+void insert_minheap_node(MinHeapNode *minHeap, Node *minHeapNode)
+{
+    minHeap->size++;
+    int i = minHeap->size - 1;
+
+    // bubble up
+    while (i && minHeapNode->frequency < minHeap->array[(i - 1) / 2]->frequency)
+    {
+        minHeap->array[i] = minHeap->array[(i - 1) / 2];
+        i = (i - 1) / 2;
+    }
+    minHeap->array[i] = minHeapNode;
+}
+
 void Create_MinHeap(MinHeapNode *minHeap, int idx)
 {
     int smallest = idx;
