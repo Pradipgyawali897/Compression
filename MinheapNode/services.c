@@ -1,23 +1,25 @@
 #include "services.h"
-#include<stdlib.h>
+#include <stdlib.h>
 
-struct MinHeapNode *alloc_minheap_node(void){
-    return (struct MinHeapNode *)malloc(
-        sizeof(struct MinHeapNode)
-    );
+MinHeapNode *alloc_minheap_node(void)
+{
+    return (MinHeapNode *)malloc(
+        sizeof(MinHeapNode));
 }
 
-struct MinHeapNode* create_minheap_node(int capacity){
-    struct MinHeapNode* temp=alloc_minheap_node();
-    if(!temp) return NULL;
-    temp->capacity=capacity;
-    temp->size=0;
-    temp->array = malloc(capacity * sizeof(struct Node*));
+MinHeapNode *create_minheap_node(int capacity)
+{
+    MinHeapNode *temp = alloc_minheap_node();
+    if (!temp)
+        return NULL;
+    temp->capacity = capacity;
+    temp->size = 0;
+    temp->array = (Node **)malloc(capacity * sizeof(Node *));
     return temp;
 }
 
-
-void Create_MinHeap(struct MinHeapNode* minHeap, int idx){
+void Create_MinHeap(MinHeapNode *minHeap, int idx)
+{
     int smallest = idx;
     int left = 2 * idx + 1;
     int right = 2 * idx + 2;
@@ -30,8 +32,17 @@ void Create_MinHeap(struct MinHeapNode* minHeap, int idx){
         minHeap->array[right]->frequency < minHeap->array[smallest]->frequency)
         smallest = right;
 
-    if (smallest != idx) {
+    if (smallest != idx)
+    {
         swap_nodes(&minHeap->array[smallest], &minHeap->array[idx]);
         Create_MinHeap(minHeap, smallest);
     }
+}
+Node *extractMin(MinHeapNode *heap)
+{
+    Node *temp = heap->array[0];
+    heap->array[0] = heap->array[heap->size - 1];
+    heap->size--;
+    Create_MinHeap(heap, 0);
+    return temp;
 }

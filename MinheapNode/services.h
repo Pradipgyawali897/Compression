@@ -3,8 +3,8 @@
 #include "struct.h"
 #include "../Node/services.h"
 
-struct MinHeapNode *alloc_minheap_node(void);
-struct MinHeapNode *create_minheap_node(int capacity);
-void Create_MinHeap(struct MinHeapNode* minHeap,int idx);
-struct Node* extractMin(struct MinHeapNode* heap) ;
+MinHeapNode *alloc_minheap_node(void);
+MinHeapNode *create_minheap_node(int capacity);
+void Create_MinHeap(MinHeapNode* minHeap,int idx);
+Node* extractMin(MinHeapNode* heap) ;
 #endif

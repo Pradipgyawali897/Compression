@@ -1,12 +1,12 @@
 #include <stdlib.h>
 #include "services.h"
 
-struct Node *alloc_node(void) {
-    return (struct Node *)malloc(sizeof(struct Node));
+Node *alloc_node(void) {
+    return (Node *)malloc(sizeof(Node));
 }
 
-struct Node *create_node(char c, unsigned int freq) {
-    struct Node *temp = alloc_node();
+Node *create_node(char c, unsigned int freq) {
+    Node *temp = alloc_node();
     if (!temp) return NULL; 
     temp->character = c;
     temp->frequency = freq;
@@ -16,8 +16,8 @@ struct Node *create_node(char c, unsigned int freq) {
 }
 
 
-void swap_nodes(struct Node **a, struct Node **b){
-    struct Node* temp=*a;
+void swap_nodes(Node **a, Node **b){
+    Node* temp=*a;
     *a = *b;
     *b = temp;
 }
