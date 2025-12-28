@@ -43,3 +43,19 @@ void printTree(Node* root) {
     printTree(root->right);
 }
 
+
+void generateCodes(Node* root, int arr[], int top) {
+    if (root->left) {
+        arr[top] = 0;
+        generateCodes(root->left, arr, top + 1);
+    }
+    if (root->right) {
+        arr[top] = 1;
+        generateCodes(root->right, arr, top + 1);
+    }
+    if (!root->left && !root->right) {
+        printf("%c: ", root->character);
+        for (int i = 0; i < top; i++) printf("%d", arr[i]);
+        printf("\n");
+    }
+}
